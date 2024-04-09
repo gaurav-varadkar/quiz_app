@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:quiz_app/const/image_asset_path.dart';
 import 'package:quiz_app/screens/otp_screen.dart';
 
@@ -101,14 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       (FirebaseAuthException authException) {},
                                   codeSent: (String verificationId,
                                       int? resendToken) {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: ((context) => OtpScreen(
-                                              verificationId: verificationId,
-                                            )),
-                                      ),
-                                    );
+                                        Get.to(()=> OtpScreen(verificationId: verificationId));
                                   },
                                   codeAutoRetrievalTimeout:
                                       (String verificationId) {},
@@ -133,14 +127,3 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 }
 
-// Future<void> verifyPhone(BuildContext context) async {
-//   await FirebaseAuth.instance.verifyPhoneNumber(
-//       verificationCompleted: (PhoneAuthCredential credential) {},
-//       verificationFailed: (FirebaseAuthException authException) {},
-//       codeSent: (String verificationId, int? resendToken) {
-//         Navigator.push(
-//             context, MaterialPageRoute(builder: ((context) => OtpScreen())));
-//       },
-//       codeAutoRetrievalTimeout: (String verificationId) {},
-//       phoneNumber: phoneController.text.toString());
-// }
