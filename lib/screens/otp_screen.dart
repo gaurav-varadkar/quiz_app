@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/const/image_asset_path.dart';
 import 'package:quiz_app/controllers/auth_controller.dart';
-import 'package:quiz_app/screens/quiz_page.dart';
+import 'package:quiz_app/screens/home_page.dart';
 
 class OtpScreen extends StatelessWidget {
   final String verificationId;
@@ -63,24 +63,17 @@ class OtpScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 25),
-              ElevatedButton(
-                onPressed: () async{
-                  await authController.signInWithOTP(
-                  verificationId,otpController.text
-                );
-                Get.offAll(()=> QuizPage());
-                },
-                child: Obx(() {
-                  if (authController.verifyingOTP.value) {
+              ElevatedButton(onPressed: () async {
+                await authController.signInWithOTP(
+                    verificationId, otpController.text);
+                Get.offAll(() => const HomePage());
+              }, child: Obx(() {
+                if (authController.verifyingOTP.value) {
                   return const CircularProgressIndicator();
-                }
-                else{
+                } else {
                   return const Text('Submit');
                 }
-                }
-                  
-              )
-              )
+              }))
             ],
           ),
         ],

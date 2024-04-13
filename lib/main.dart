@@ -9,9 +9,9 @@ import 'package:quiz_app/screens/home_page.dart';
 import 'package:quiz_app/screens/login_screen.dart';
 import 'package:quiz_app/screens/quiz_page.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -28,12 +28,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const LoginScreen(),
       initialRoute:
           FirebaseAuth.instance.currentUser != null ? '/quiz' : '/login',
       getPages: [
         GetPage(name: '/login', page: () => const LoginScreen()),
-        GetPage(name: '/quiz', page: () =>  const HomePage()),
+        GetPage(name: '/quiz', page: () => const HomePage()),
       ],
     );
   }

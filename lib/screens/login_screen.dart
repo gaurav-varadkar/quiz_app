@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/const/image_asset_path.dart';
+import 'package:quiz_app/controllers/auth_controller.dart';
 import 'package:quiz_app/screens/otp_screen.dart';
-
-// enum AuthState { enterNumber, enterOTP }
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -15,6 +14,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final AuthController authController =
+      Get.put<AuthController>(AuthController());
   TextEditingController phoneController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -102,7 +103,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                       (FirebaseAuthException authException) {},
                                   codeSent: (String verificationId,
                                       int? resendToken) {
-                                        Get.to(()=> OtpScreen(verificationId: verificationId));
+                                    Get.to(() => OtpScreen(
+                                        verificationId: verificationId));
                                   },
                                   codeAutoRetrievalTimeout:
                                       (String verificationId) {},
@@ -126,4 +128,3 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-

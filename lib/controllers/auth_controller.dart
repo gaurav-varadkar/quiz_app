@@ -31,7 +31,7 @@ class AuthController extends GetxController {
           await _auth.signInWithCredential(credential);
           // If verification is completed automatically, set verifyingOTP to false
           verifyingOTP.value = false;
-          Get.offAll(()=> QuizPage());
+          Get.offAll(() => QuizPage());
         },
         verificationFailed: (FirebaseAuthException e) {
           Get.snackbar("Error", "Verification failed: ${e.message}");
@@ -40,7 +40,7 @@ class AuthController extends GetxController {
         },
         codeSent: (String verificationId, int? resendToken) {
           // Navigate to OTP screen with verification ID
-          Get.offAll(() => OtpScreen(verificationId: verificationId));
+          Get.to(() => OtpScreen(verificationId: verificationId));
           // Set verifyingOTP to false after navigating to OTP screen
           verifyingOTP.value = false;
         },
