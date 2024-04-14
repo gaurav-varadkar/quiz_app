@@ -1,16 +1,11 @@
-# quiz_app
+# quiz_app - by Gaurav Varadkar
 
-A new Flutter project.
+Quiz App using GetX State Management and Firebase Auth and Firebase Firestore.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project allows you to login via phone number and play the quiz .
+Its that Simple!
+You will get your quiz result after the quiz questions.
+You need to answer maximum questions right in order to get Pass Status.  
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
