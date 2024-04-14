@@ -24,6 +24,8 @@ dependencies:
   get: ^4.6.6
   get_storage: ^2.1.1
   cloud_firestore: ^4.16.1
+  
+  url_launcher: ^6.2.6
 
 dev_dependencies:
   flutter_test:
