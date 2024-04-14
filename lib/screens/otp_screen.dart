@@ -4,8 +4,6 @@ import 'package:get/get.dart';
 import 'package:quiz_app/const/background_display.dart';
 import 'package:quiz_app/controllers/auth_controller.dart';
 
-import 'package:quiz_app/screens/quiz_page.dart';
-
 class OtpScreen extends StatelessWidget {
   final String verificationId;
   final String phoneNumber;
