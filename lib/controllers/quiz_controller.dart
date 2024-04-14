@@ -1,7 +1,6 @@
 // import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/model/quiz_model.dart';
@@ -10,7 +9,6 @@ import 'package:quiz_app/screens/result_page.dart';
 class QuizController extends GetxController {
   final CollectionReference _quizCollection =
       FirebaseFirestore.instance.collection('quiz');
-
 
   RxList<QuizModel> quizQuestions = <QuizModel>[].obs;
   RxInt currentQuestionIndex = 0.obs;
@@ -56,12 +54,12 @@ class QuizController extends GetxController {
 
       selectedOption.value = -1;
     } else {
-      Get.off(() => const ResultPage());
+      Get.off(() => ResultPage(
+          quizQuestion: quizQuestions.length,
+          quizAnswer: correctAnswers.value));
     }
     update();
   }
-
-
 
   void calculateCorrectAnswers() {
     if (currentQuestionIndex <= quizQuestions.length - 1) {
@@ -80,32 +78,4 @@ class QuizController extends GetxController {
     selectedOption.value = value;
     update();
   }
-
-  void resetQuiz() {
-    currentQuestionIndex.value = 0;
-    selectedOption.value = -1;
-    correctAnswers.value = 0;
-  }
-
-  Future<void> saveCorrectAnswers({String? name}) async {
-    try {
-      final CollectionReference users =
-          FirebaseFirestore.instance.collection('users');
-      final user = FirebaseAuth.instance.currentUser;
-
-      if (user == null) throw "User UID is null";
-   
-      await users.doc(user.uid).update({
-        "results":{
-          'total_questions': quizQuestions.length,
-        'correct_answers': correctAnswers.value,
-        'timestamp': Timestamp.now(),
-        }
-      });
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-  }
-
- 
 }
