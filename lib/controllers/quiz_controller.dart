@@ -56,7 +56,7 @@ class QuizController extends GetxController {
 
       selectedOption.value = -1;
     } else {
-      Get.to(() => const ResultPage());
+      Get.off(() => const ResultPage());
     }
     update();
   }

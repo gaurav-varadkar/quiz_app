@@ -29,58 +29,56 @@ class OtpScreen extends StatelessWidget {
         body: BackgroundImage(
           child: Padding(
             padding: const EdgeInsets.all(14),
-            child: Flexible(
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Verify your OTP \n to enter the QuizMania!',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.w900),
-                    ),
-                    const SizedBox(height: 25),
-                    TextField(
-                      controller: otpController,
-                      style: const TextStyle(color: Colors.white),
-                      maxLength: 6,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly
-                      ],
-                      keyboardType: TextInputType.phone,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Enter OTP',
-                        labelStyle: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                       const SizedBox(height: 25),
-            SizedBox(
-              height: 60,
-              width: double.infinity,
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                    shape: const StadiumBorder(),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Verify your OTP \n to enter the QuizMania!',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w900),
                   ),
-                  onPressed: () async {
-                    await authController.signInWithOTP(verificationId,
-                        otpController.text, name, phoneNumber);
-                    Get.offAll(() => QuizPage());
-                  },
-                  child: Obx(() {
-                    if (authController.verifyingOTP.value) {
-                      return const CircularProgressIndicator();
-                    } else {
-                      return const Text('Submit',style: TextStyle(color: Colors.white , fontSize: 18),);
-                    }
-                  })),
-            ),
-                  ],
+                  const SizedBox(height: 25),
+                  TextField(
+                    controller: otpController,
+                    style: const TextStyle(color: Colors.white),
+                    maxLength: 6,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly
+                    ],
+                    keyboardType: TextInputType.phone,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Enter OTP',
+                      labelStyle: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                     const SizedBox(height: 25),
+                        SizedBox(
+            height: 60,
+            width: double.infinity,
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  shape: const StadiumBorder(),
                 ),
+                onPressed: () async {
+                  await authController.signInWithOTP(verificationId,
+                      otpController.text, name, phoneNumber);
+                  // Get.offAll(() => QuizPage());
+                },
+                child: Obx(() {
+                  if (authController.verifyingOTP.value) {
+                    return const CircularProgressIndicator();
+                  } else {
+                    return const Text('Submit',style: TextStyle(color: Colors.white , fontSize: 18),);
+                  }
+                })),
+                        ),
+                ],
               ),
             ),
           ),
